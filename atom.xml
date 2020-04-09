@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>猛男大大</title>
+  <icon>http://chenfu1201.github.io/icon.png</icon>
+  <subtitle>看啥看！没见过猛男？</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://chenfu1201.github.io/"/>
+  <updated>2020-04-09T14:44:03.031Z</updated>
+  <id>http://chenfu1201.github.io/</id>
+  
+  <author>
+    <name>臣服Romantic”</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>索引</title>
+    <link href="http://chenfu1201.github.io/2020/03/01/%E7%B4%A2%E5%BC%95/"/>
+    <id>http://chenfu1201.github.io/2020/03/01/%E7%B4%A2%E5%BC%95/</id>
+    <published>2020-03-01T12:46:25.000Z</published>
+    <updated>2020-04-09T14:44:03.031Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;什么是索引&quot;&gt;&lt;a href=&quot;#什么是索引&quot; class=&quot;headerlink&quot; title=&quot;什么是索引?&quot;&gt;&lt;/a&gt;什么是索引?&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;索引的出现其实就是为了提高数据查询的效率，就像书的目录一样。在 MySQL
+        
+      
+    
+    </summary>
+    
+    
+      <category term="数据库" scheme="http://chenfu1201.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="索引" scheme="http://chenfu1201.github.io/tags/%E7%B4%A2%E5%BC%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java内存模型</title>
+    <link href="http://chenfu1201.github.io/2019/08/03/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/"/>
+    <id>http://chenfu1201.github.io/2019/08/03/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/</id>
+    <published>2019-08-03T03:01:48.000Z</published>
+    <updated>2020-04-09T14:46:03.247Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;Java虚拟机的大部分操作都不需要特别关注，关键性的问题在于运行时数据区的结构组成上，我们平常进行堆栈分析都是这个区内。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://chenfu1201.github.io/categories/Java/"/>
+    
+    
+      <category term="Java内存" scheme="http://chenfu1201.github.io/tags/Java%E5%86%85%E5%AD%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据库事务</title>
+    <link href="http://chenfu1201.github.io/2018/11/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/"/>
+    <id>http://chenfu1201.github.io/2018/11/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/</id>
+    <published>2018-11-03T14:01:48.000Z</published>
+    <updated>2020-04-09T14:44:42.149Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;什么是事务？&quot;&gt;&lt;a href=&quot;#什么是事务？&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="数据库" scheme="http://chenfu1201.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="事务" scheme="http://chenfu1201.github.io/tags/%E4%BA%8B%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://chenfu1201.github.io/2000/03/13/hello-world/"/>
+    <id>http://chenfu1201.github.io/2000/03/13/hello-world/</id>
+    <published>2000-03-13T12:46:25.000Z</published>
+    <updated>2020-04-09T10:13:57.991Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>

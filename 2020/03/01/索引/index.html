@@ -29,6 +29,7 @@
 
   
 
+<link rel="alternate" href="/atom.xml" title="猛男大大" type="application/atom+xml">
 </head>
 
 </html>
@@ -69,7 +70,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">527字</span>
+            <span class="post-count">526字</span>
         </span>
     </span>
 
@@ -103,8 +104,7 @@
       
 
       
-      <p>@<a href="目录">TOC</a></p>
-<h1 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引?"></a>什么是索引?</h1><blockquote>
+      <h1 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引?"></a>什么是索引?</h1><blockquote>
 <p>索引的出现其实就是为了提高数据查询的效率，就像书的目录一样。在 MySQL 中，索引是在存储引擎层实现的</p>
 </blockquote>
 <h1 id="InnoDB-的索引模型"><a href="#InnoDB-的索引模型" class="headerlink" title="InnoDB 的索引模型"></a>InnoDB 的索引模型</h1><p>在 InnoDB 中，表都是根据主键顺序以索引的形式存放的，这种存储方式的表称为索引组织表。因为InnoDB 使用了 B+ 树索引模型，所以数据都是存储在 B+ 树中的。</p>
@@ -129,11 +129,11 @@
 </blockquote>
 <p>建立联合索引的原则</p>
 <ul>
-<li>第一原则是，如果通过调整顺序，可以少维护一个索引，那么这个顺序往往就是需要优先考虑采用的。<h2 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h2><blockquote>
+<li>第一原则是，如果通过调整顺序，可以少维护一个索引，那么这个顺序往往就是需要优先考虑采用的。</li>
+</ul>
+<h2 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h2><blockquote>
 <p>在 MySQL 5.6引入的索引下推优化（index condition pushdown)，可以在索引遍历过程中，对索引中包含的字段先做判断，直接过滤掉不满足条件的记录，减少回表次数。</p>
 </blockquote>
-</li>
-</ul>
 
       
       <!-- reward -->
@@ -590,23 +590,6 @@
 
 <script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
 
-    
-    <div id="music">
-    
-    
-    
-    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
-        src="//music.163.com/outchain/player?type=2&id=22707008&auto=1&height=32"></iframe>
-</div>
-
-<style>
-    #music {
-        position: fixed;
-        right: 15px;
-        bottom: 0;
-        z-index: 998;
-    }
-</style>
     
   </div>
 </body>

@@ -29,6 +29,7 @@
 
   
 
+<link rel="alternate" href="/atom.xml" title="猛男大大" type="application/atom+xml">
 </head>
 
 </html>
@@ -103,8 +104,7 @@
       
 
       
-      <p>@<a href="目录">TOC</a></p>
-<h1 id="什么是事务？"><a href="#什么是事务？" class="headerlink" title="什么是事务？"></a>什么是事务？</h1><blockquote>
+      <h1 id="什么是事务？"><a href="#什么是事务？" class="headerlink" title="什么是事务？"></a>什么是事务？</h1><blockquote>
 <p>事务是对数据库的一系列操作，有明确的开始和结束标志，且要被完全执行，要么全部成功，要么全部失败。</p>
 </blockquote>
 <h1 id="为什么要使用事务？"><a href="#为什么要使用事务？" class="headerlink" title="为什么要使用事务？"></a>为什么要使用事务？</h1><blockquote>
@@ -115,11 +115,11 @@
 <li>原子性（Atomicity）<br>事务最终状态只有两种，全部执行成功和全部不执行，事务中任何一项操作失败，都会导致整个事务失败。一旦失败所有操作都会被取消【回滚】，就像事务从来没有执行过一样。</li>
 <li>一致性（Consistency）<br>事务执行前后，数据的完整性保持一致。</li>
 <li>隔离性（Isolation）<br>多个事务并发执行时，多个事务之间互不干扰。即一个事务内部的操作及使用的数据，对其他并发事务是隔离的。</li>
-<li>持久性（Durability）<br>事务结束后，对数据库所作的更改被永久保存下来了，即使发生系统故障或宕机，只要数据库能够恢复到被访问，那么一定能够被恢复到事务完成时的状态。<h2 id="隔离级别"><a href="#隔离级别" class="headerlink" title="隔离级别"></a>隔离级别</h2><blockquote>
+<li>持久性（Durability）<br>事务结束后，对数据库所作的更改被永久保存下来了，即使发生系统故障或宕机，只要数据库能够恢复到被访问，那么一定能够被恢复到事务完成时的状态。</li>
+</ol>
+<h2 id="隔离级别"><a href="#隔离级别" class="headerlink" title="隔离级别"></a>隔离级别</h2><blockquote>
 <p>当数据库上有多个事务同时执行的时候，就可能出现脏读，不可重复读和幻读的问题，因此就有了“隔离级别”的概念。</p>
 </blockquote>
-</li>
-</ol>
 <p>首先要知道，隔离得越严实，效率就越低。因此很多时候，要在这二者之间寻求一个平衡点。SQL标准的事务隔离级别包括如下几种。</p>
 <ol>
 <li>读未提交（read uncommitted）<br>一个事务还没提交，此时它所做的变更能被别的事务看到。此隔离级别会引发 <strong>脏读</strong> 的问题</li>
@@ -618,23 +618,6 @@
 
 <script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
 
-    
-    <div id="music">
-    
-    
-    
-    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
-        src="//music.163.com/outchain/player?type=2&id=22707008&auto=1&height=32"></iframe>
-</div>
-
-<style>
-    #music {
-        position: fixed;
-        right: 15px;
-        bottom: 0;
-        z-index: 998;
-    }
-</style>
     
   </div>
 </body>
