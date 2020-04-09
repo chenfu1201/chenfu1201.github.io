@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="zh-CN" >
 
 
 <head>
   <meta charset="utf-8" />
-    
+   
+  <meta name="keywords" content="猛男" />
+   
   <meta name="description" content="emmm..." />
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Hello World |  臣服
+    Java内存模型 |  猛男大大
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -35,7 +37,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-hello-world" class="article article-type-post" itemscope
+  <article id="post-Java内存模型" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -43,7 +45,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Hello World
+  Java内存模型
 </h1>
  
 
@@ -52,10 +54,14 @@
 
     
     <div class="article-meta">
-      <a href="/2020/03/27/hello-world/" class="article-date">
-  <time datetime="2020-03-27T14:03:27.780Z" itemprop="datePublished">2020-03-27</time>
+      <a href="/2019/08/03/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" class="article-date">
+  <time datetime="2019-08-03T03:01:48.000Z" itemprop="datePublished">2019-08-03</time>
 </a>
       
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
       
       
 <div class="word_count">
@@ -63,7 +69,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">73字</span>
+            <span class="post-count">1.8k字</span>
         </span>
     </span>
 
@@ -72,7 +78,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">6分钟</span>
         </span>
     </span>
 </div>
@@ -97,20 +103,63 @@
       
 
       
-      <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+      <p>@<a href="目录">TOC</a></p>
+<blockquote>
+<p>Java虚拟机的大部分操作都不需要特别关注，关键性的问题在于运行时数据区的结构组成上，我们平常进行堆栈分析都是这个区内。</p>
+</blockquote>
 <a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<h2 id="JVM运行时数据区"><a href="#JVM运行时数据区" class="headerlink" title="JVM运行时数据区"></a>JVM运行时数据区</h2><p>JVM中运行时数据区包括五个部分：</p>
+<ul>
+<li>程序计数器【寄存器】</li>
+<li>Java栈【运行时的单位】</li>
+<li>Java堆【存储的单元】</li>
+<li>方法区</li>
+<li>本地方法栈<h3 id="运行时数据区模型图"><a href="#运行时数据区模型图" class="headerlink" title="运行时数据区模型图"></a>运行时数据区模型图</h3><img src="https://img-blog.csdnimg.cn/2019042521325463.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NIRU5GVV9aS0s=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>注意：不同的JDK版本，ClassLoader是有所不同的。<h3 id="运行时数据区各个区域的作用"><a href="#运行时数据区各个区域的作用" class="headerlink" title="运行时数据区各个区域的作用"></a>运行时数据区各个区域的作用</h3><h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4>作用如下：</li>
+<li>用来指示执行哪条指令，是一块很小的内存区域，小到可以忽略不记。</li>
+<li>在程序编译时会为字节码的每一行的都分配一个程序计数器。</li>
+<li>多线程并行执行时，每一个线程对象都会有自己独立的程序计数器，以保证CPU切换后可以取得当前程序的执行位置。</li>
+<li>JVM中规定，如果当前线程执行的是非native方法，程序计数器保存的是当前需要执行的指令的地址，如果线程执行的是native方法，程序计数器保存的值是undefined。</li>
+</ul>
+<p>因为程序计数器中存储的数据所占的空间大小不会随着程序的执行而发生变化，因此，程序计数器不会发生内存溢出现象【OOM】。</p>
+<h4 id="Java虚拟机栈"><a href="#Java虚拟机栈" class="headerlink" title="Java虚拟机栈"></a>Java虚拟机栈</h4><p>虚拟机栈描述的是Java方法执行的内存模型。执行一个方法时会产生一个栈帧，随后将其保存到栈【先进后出】的顶部，方法执行完毕后会自动将此栈帧进行出栈。顶部的栈帧就表示的当前执行的方法。</p>
+<ul>
+<li>栈结构分为栈顶和栈底，遵循先进后出的（FILO）的规则。</li>
+<li>栈内存是线程私有的，其生命周期和线程相同。</li>
+</ul>
+<p>注意 ：</p>
+<ol>
+<li>如果当前请求的栈的深度【栈帧数量过多】过大，虚拟机可能会抛出 StackOverflowError 异常。 【反映在代码上就是出现了死循环，递归没有结束】</li>
+<li>不同的虚拟机实现不同，有的虚拟机允许栈动态扩展，当内存不足以扩展栈的时候，会抛出OutOfMemoryError异常。</li>
+</ol>
+<p>上面已经说过了栈的基本单位是栈帧，那么接下来再来看一下栈帧的结构</p>
+<h5 id="栈帧"><a href="#栈帧" class="headerlink" title="栈帧"></a>栈帧</h5><p>栈帧主要由以下部分组成</p>
+<ol>
+<li>局部变量表<br>方法的局部变量和形参，以变量槽【solt】为基本单位，只允许保存32位长度的变量，如果超过32位长度则会开辟两个连续的solt【64位长度，long和double】。</li>
+<li>操作数栈<br>表达式的计算是在栈中完成的。</li>
+<li>方法返回地址<br>方法执行完毕后需要返回调用此方法的位置，所以需要在栈帧中保存方法返回地址。</li>
+<li>指向当前方法所属的类的运行时常量池的引用<br>引用其他类的常量或使用String池中的字符串。<h5 id="栈和栈帧模型图"><a href="#栈和栈帧模型图" class="headerlink" title="栈和栈帧模型图"></a>栈和栈帧模型图</h5><img src="https://img-blog.csdnimg.cn/20190622162221445.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NIRU5GVV9aS0s=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h4 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h4>方法区是JVM中非常重要的一块内存区域，一般而言，在方法区很少执行垃圾回收。</li>
+</ol>
+<ul>
+<li>该区域所有线程对象共享。</li>
+<li>该区域保存了每一个类的信息【类名称、方法信息、成员信息、接口信息、静态变量、常量和常量池等】。<h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4>本地方法栈与Java栈内存的功能类似，唯一的区别是本地方法栈是为本地方法服务的。</li>
+</ul>
+<h4 id="堆内存"><a href="#堆内存" class="headerlink" title="堆内存"></a>堆内存</h4><p>此区域所有线程对象共享！堆内存主要保存具体的数据信息【对象】，在JVM启动时将被自动创建。Java开发人员无需管理此区域的空间释放，其会由Java垃圾收集器自动释放，此空间是垃圾收集器的主要管理区域。该区域又细分如下几个区域。</p>
+<ul>
+<li>年轻代：所有新创建的对象都保存在年轻代里面。</li>
+<li>老年代：所有常用的对象【多次清理之后还被保留的对象】，新建的超大对象【将会占用大量内存的对象】。</li>
+<li>元空间：JDK1.8之后，新增了元空间的概念，元空间的本质描述的就是直接内存。【在JDK1.8以前，是没有元空间的，对应的内存被称为“永久代”（方法区：方法区的内容无法回收）】</li>
+<li>伸缩区：当模块内存空间不足时，会释放伸缩区中的内存空间，进行更多对象的存储，所以伸缩区是一块可以被不断修改大小的内存区域，<strong>所有的内存代都有此区域</strong>。</li>
+</ul>
+<h5 id="堆内存模型图"><a href="#堆内存模型图" class="headerlink" title="堆内存模型图"></a>堆内存模型图</h5><p><img src="https://img-blog.csdnimg.cn/20190624103658112.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NIRU5GVV9aS0s=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="年轻代内存划分"><a href="#年轻代内存划分" class="headerlink" title="年轻代内存划分"></a>年轻代内存划分</h5><p>年轻代分为两个部分：伊甸园区、存活区（存活区都会为其分为两块大小相同的内存区域），年轻代的内存分配如下。</p>
+<ol>
+<li>伊甸园区：新生对象。</li>
+<li>存活区：经过垃圾回收后仍存活的对象。</li>
+</ol>
+<h6 id="年轻代内存模型图"><a href="#年轻代内存模型图" class="headerlink" title="年轻代内存模型图"></a>年轻代内存模型图</h6><p><img src="https://img-blog.csdnimg.cn/20190624121837864.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NIRU5GVV9aS0s=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>可以发现，伊甸园区在整个年轻代中的比重是最大的，而这个比例的关系默认情况下大致为 8：1：1</p>
+<h5 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h5><p>上边已经介绍过了，元空间的本质描述的就是直接内存。那么直接内存又是什么呢？<br>所谓的直接内存，指的是虚拟机之外的主机内存【假设，我的服务器有8G内存，其中2G内存给了JVM，剩下的6G就是直接内存】。直接内存并不会受到JVM的控制，但在JDK中提供有一种基于通道（Channel）和缓冲区（Buffer）的内存分配方式，这种方式会将native函数库分配在直接内存，并且会通过存储在JVM堆内存中的“DirectByteBuffer”来引用它。由于直接内存会受到本机系统内存的限制，所以也有可能出现“OOM”错误。</p>
+<p><strong>正因为直接内存的存在，所以我们断然不能把服务器的所有内存都分配给JVM。</strong></p>
+<h3 id="OOM【OutOfMemoryError】总结"><a href="#OOM【OutOfMemoryError】总结" class="headerlink" title="OOM【OutOfMemoryError】总结"></a>OOM【OutOfMemoryError】总结</h3><p>在进行多线程开发访问的过程里面，所有的线程一定可以共享某一个线程执行体的堆内存空间（这个堆内存空间可以使用Runnable或者是Callable进行表述），同时方法上也可以实现线程操作的共享，正是因为方法上可以共享，所以在进行同步的时候往往就要在方法里面追加同步锁等相关定义。如果要进行内存区域的理解，那么首先就必须考虑程序代码之中可能出现的<strong>OOM</strong>问题。OOM分为两种情况：栈内存溢出【Stackoverflow】、堆内存溢出。<br><img src="https://img-blog.csdnimg.cn/20190622154807404.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NIRU5GVV9aS0s=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>从开发角度来讲，最为常见的OOM肯定是堆内存溢出（产生了大量无用对象），栈内存发生数据溢出主要出现在<strong>递归操作</strong>上。正是因为所有的递归操作在执行的时候有可能产生栈溢出的问题，所以在项目编写之中往往都会建议使用while循环来代替递归操作。</p>
 
       
       <!-- reward -->
@@ -180,13 +229,15 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/03/27/hello-world/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://chenfu1201.github.io/2019/08/03/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java%E5%86%85%E5%AD%98/" rel="tag">Java内存</a></li></ul>
+
 
     </footer>
 
@@ -196,7 +247,7 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/03/27/%E7%B4%A2%E5%BC%95/" class="article-nav-link">
+      <a href="/2020/03/01/%E7%B4%A2%E5%BC%95/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
@@ -205,6 +256,11 @@
         </div>
       </a>
     
+    
+      <a href="/2018/11/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">数据库事务</div>
+      </a>
     
   </nav>
 
@@ -226,8 +282,8 @@
         app_id: '',
         app_key: '',
         path: window.location.pathname,
-        notify: 'false',
-        verify: 'false',
+        notify: 'true',
+        verify: 'true',
         avatar: 'mp',
         placeholder: '给我的文章加点评论吧~',
         recordIP: true
@@ -324,7 +380,7 @@
 <nav class="navbar">
   
   <div class="logo">
-    <a href="/"><img src="/images/ayer-side.svg" alt="臣服"></a>
+    <a href="/"><img src="/images/ayer-side.svg" alt="猛男大大"></a>
   </div>
   
   <ul class="nav nav-main">
@@ -346,15 +402,7 @@
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/2019/about">关于我</a>
+      <a class="nav-item-link" href="/about">关于我</a>
     </li>
     
   </ul>
@@ -363,7 +411,7 @@
   <ul class="nav">
     <li class="nav-item">
       
-      <a class="nav-item-link nav-item-search"  title="Search">
+      <a class="nav-item-link nav-item-search"  title="搜索">
         <i class="ri-search-line"></i>
       </a>
       
@@ -397,13 +445,13 @@
   <div class="reward-box">
     
     <div class="reward-item">
-      <img class="reward-img" src="/images/alipay.jpg">
+      <img class="reward-img" src="/images/alipay.png">
       <span class="reward-type">支付宝</span>
     </div>
     
     
     <div class="reward-item">
-      <img class="reward-img" src="/images/wechat.jpg">
+      <img class="reward-img" src="/images/wechat.png">
       <span class="reward-type">微信</span>
     </div>
     
@@ -419,7 +467,7 @@
 <script>
   try {
     var typed = new Typed("#subtitle", {
-      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      strings: ['耐得住寂寞才能守得住长久', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
       startDelay: 0,
       typeSpeed: 200,
       loop: true,
@@ -577,6 +625,23 @@
 
 <script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
 
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=22707008&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
     
   </div>
 </body>
