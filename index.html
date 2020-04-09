@@ -7,9 +7,11 @@
 <head>
   <meta charset="utf-8" />
     
+  <meta name="description" content="emmm..." />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-     Hexo
+     臣服
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -45,7 +47,7 @@
       <img src="/images/cover1.jpg" alt="image frame" />
     </div>
     <div class="cover-inner text-center text-white">
-      <h1><a href="/">Hexo</a></h1>
+      <h1><a href="/">臣服</a></h1>
       <div id="subtitle-box">
         
         <span id="subtitle"></span>
@@ -112,34 +114,9 @@
 <h1 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引?"></a>什么是索引?</h1><blockquote>
 <p>索引的出现其实就是为了提高数据查询的效率，就像书的目录一样。在 MySQL 中，索引是在存储引擎层实现的</p>
 </blockquote>
-<h1 id="InnoDB-的索引模型"><a href="#InnoDB-的索引模型" class="headerlink" title="InnoDB 的索引模型"></a>InnoDB 的索引模型</h1><p>在 InnoDB 中，表都是根据主键顺序以索引的形式存放的，这种存储方式的表称为索引组织表。因为InnoDB 使用了 B+ 树索引模型，所以数据都是存储在 B+ 树中的。</p>
-<blockquote>
-<p>每一个索引在 InnoDB 里面对应一棵 B+ 树。</p>
-</blockquote>
-<h2 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h2><p>根据叶子节点的内容，索引类型分为主键索引和非主键索引。</p>
-<ul>
-<li>主键索引的叶子节点存的是整行数据。在 InnoDB 里，主键索引也被称为聚簇索引（clustered index）。</li>
-<li>非主键索引的叶子节点内容是主键的值。在 InnoDB 里，非主键索引也被称为二级索引（secondary index）。</li>
-</ul>
-<blockquote>
-<p>显然，主键长度越小，普通索引的叶子节点就越小，普通索引占用的空间也就越小</p>
-</blockquote>
-<h2 id="回表"><a href="#回表" class="headerlink" title="回表"></a>回表</h2><p>在非主键索引树上查到主键数据，回到主键索引树搜索的过程，我们称为回表</p>
-<h2 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h2><p>如果某个非主键索引中的数据，已经满足了我们的查询需求，因此可以直接提供查询结果，不需要回表。</p>
-<blockquote>
-<p>由于覆盖索引可以减少树的搜索次数，显著提升查询性能，所以使用覆盖索引是一个常用的性能优化手段。</p>
-</blockquote>
-<h2 id="最左前缀原则"><a href="#最左前缀原则" class="headerlink" title="最左前缀原则"></a>最左前缀原则</h2><blockquote>
-<p>B+ 树这种索引结构，可以利用索引的“最左前缀”，来定位记录。</p>
-</blockquote>
-<p>建立联合索引的原则</p>
-<ul>
-<li>第一原则是，如果通过调整顺序，可以少维护一个索引，那么这个顺序往往就是需要优先考虑采用的。<h2 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h2><blockquote>
-<p>在 MySQL 5.6引入的索引下推优化（index condition pushdown)，可以在索引遍历过程中，对索引中包含的字段先做判断，直接过滤掉不满足条件的记录，减少回表次数。</p>
-</blockquote>
-</li>
-</ul>
-
+      
+      <a class="article-more-link" href="/2020/03/27/%E7%B4%A2%E5%BC%95/">阅读更多...</a>
+      
       
       <!-- reward -->
       
@@ -203,19 +180,9 @@
 
       
       <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+      
+      <a class="article-more-link" href="/2020/03/27/hello-world/">阅读更多...</a>
+      
       
       <!-- reward -->
       
@@ -255,7 +222,7 @@
       <li>
         &copy;
         2015-2020
-        John Doe
+        臣服Romantic”
       </li>
       <li>
         
@@ -302,7 +269,7 @@
 <nav class="navbar">
   
   <div class="logo">
-    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+    <a href="/"><img src="/images/ayer-side.svg" alt="臣服"></a>
   </div>
   
   <ul class="nav nav-main">
