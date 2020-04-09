@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>猛男大大</title>
+  <title>猛男</title>
   <icon>http://chenfu1201.github.io/icon.png</icon>
   <subtitle>看啥看！没见过猛男？</subtitle>
   <link href="/atom.xml" rel="self"/>
