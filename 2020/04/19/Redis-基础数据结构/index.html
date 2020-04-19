@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    索引 |  我不是码神
+    Redis 基础数据结构 |  我不是码神
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -38,7 +38,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-索引" class="article article-type-post" itemscope
+  <article id="post-Redis-基础数据结构" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -46,7 +46,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  索引
+  Redis 基础数据结构
 </h1>
  
 
@@ -55,12 +55,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/03/01/%E7%B4%A2%E5%BC%95/" class="article-date">
-  <time datetime="2020-03-01T12:46:25.000Z" itemprop="datePublished">2020-03-01</time>
+      <a href="/2020/04/19/Redis-%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="article-date">
+  <time datetime="2020-04-19T05:31:23.000Z" itemprop="datePublished">2020-04-19</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+    <a class="article-category-link" href="/categories/Redis/">Redis</a>
   </div>
 
       
@@ -70,7 +70,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">526字</span>
+            <span class="post-count">1.4k字</span>
         </span>
     </span>
 
@@ -79,7 +79,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">5分钟</span>
         </span>
     </span>
 </div>
@@ -104,36 +104,53 @@
       
 
       
-      <h1 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引?"></a>什么是索引?</h1><blockquote>
-<p>索引的出现其实就是为了提高数据查询的效率，就像书的目录一样。在 MySQL 中，索引是在存储引擎层实现的</p>
-</blockquote>
-<h1 id="InnoDB-的索引模型"><a href="#InnoDB-的索引模型" class="headerlink" title="InnoDB 的索引模型"></a>InnoDB 的索引模型</h1><p>在 InnoDB 中，表都是根据主键顺序以索引的形式存放的，这种存储方式的表称为索引组织表。因为InnoDB 使用了 B+ 树索引模型，所以数据都是存储在 B+ 树中的。</p>
+      <h1 id="Redis-使用场景："><a href="#Redis-使用场景：" class="headerlink" title="Redis 使用场景："></a>Redis 使用场景：</h1><ol>
+<li>关系型数据库的缓存存在</li>
+<li>可以做任务队列</li>
+<li>大量数据运算</li>
+<li>排行榜<br>Redis非常擅长做大量数据的排行榜</li>
+</ol>
+<h1 id="使用-Docker-安装-Redis"><a href="#使用-Docker-安装-Redis" class="headerlink" title="使用 Docker 安装 Redis"></a>使用 Docker 安装 Redis</h1><ol>
+<li>拉取 Redis 镜像<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull redis:<span class="number">5.0</span>.<span class="number">3</span></span><br></pre></td></tr></table></figure></li>
+<li>创建并启动 Redis 容器<br>[– requirepass 设置密码，如下设置的此容器中 Redis 密码为 “root” ]<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run <span class="literal">-d</span> -<span class="literal">-name</span> redis <span class="literal">-p</span> <span class="number">6379</span>:<span class="number">6379</span> \</span><br><span class="line"><span class="literal">-v</span> <span class="variable">$PWD</span>/conf/redis.conf:/redis.conf \</span><br><span class="line"><span class="literal">-v</span> <span class="variable">$PWD</span>/<span class="keyword">data</span>:/<span class="keyword">data</span> redis:<span class="number">5.0</span>.<span class="number">3</span> \</span><br><span class="line">redis<span class="literal">-server</span> -<span class="literal">-appendonly</span> yes \</span><br><span class="line">-<span class="literal">-requirepass</span> <span class="string">"root"</span></span><br></pre></td></tr></table></figure></li>
+<li>使用 Redis 客户端连接容器内的 Redis 实例<br><img src="https://img-blog.csdnimg.cn/20191103115457632.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NIRU5GVV9aS0s=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+</ol>
+<h2 id="Redis-可执行文件介绍"><a href="#Redis-可执行文件介绍" class="headerlink" title="Redis 可执行文件介绍"></a>Redis 可执行文件介绍</h2><p>在 ../redis/bin 下有几个可执行文件</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">redis<span class="literal">-benchmark</span>		----性能测试工具</span><br><span class="line">redis<span class="literal">-check</span><span class="literal">-aof</span>		---<span class="literal">-AOF</span>文件修复工具</span><br><span class="line">redis<span class="literal">-check</span><span class="literal">-dump</span>	---<span class="literal">-RDB</span>文件检查工具（快照持久化文件）</span><br><span class="line">redis<span class="literal">-cli</span>			----命令行客户端</span><br><span class="line">redis<span class="literal">-server</span>		---<span class="literal">-redis</span>服务器启动命令</span><br></pre></td></tr></table></figure>
+
+<h2 id="Redis-命令大全"><a href="#Redis-命令大全" class="headerlink" title="Redis 命令大全"></a>Redis 命令大全</h2><p>redis命令大全：<a href="http://doc.redisfans.com/index.html" target="_blank" rel="noopener">redis命令参考</a></p>
+<h1 id="Redis-基础数据结构"><a href="#Redis-基础数据结构" class="headerlink" title="Redis 基础数据结构"></a>Redis 基础数据结构</h1><p>Redis 有 5 种基础数据结构，分别为：string (字符串)、list (列表)、set (集合)、hash (哈希) 和 zset (有序集合)。</p>
 <blockquote>
-<p>每一个索引在 InnoDB 里面对应一棵 B+ 树。</p>
+<p>Redis 所有的数据结构都是以唯一的 key 字符串作为名称，然后通过这个唯一 key 值来获取相应的 value 数据。不同类型的数据结构的差异就在于 value 的结构不一样。</p>
 </blockquote>
-<h2 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h2><p>根据叶子节点的内容，索引类型分为主键索引和非主键索引。</p>
-<ul>
-<li>主键索引的叶子节点存的是整行数据。在 InnoDB 里，主键索引也被称为聚簇索引（clustered index）。</li>
-<li>非主键索引的叶子节点内容是主键的值。在 InnoDB 里，非主键索引也被称为二级索引（secondary index）。</li>
-</ul>
+<h2 id="string（字符串）"><a href="#string（字符串）" class="headerlink" title="string（字符串）"></a>string（字符串）</h2><p>字符串 string 是 Redis 最简单的数据结构。</p>
 <blockquote>
-<p>显然，主键长度越小，普通索引的叶子节点就越小，普通索引占用的空间也就越小</p>
+<p>Redis 的字符串是动态字符串，是可以修改的字符串。内部结构实现上类似于 Java 的 ArrayList，采用预分配冗余空间的方式来减少内存的频繁分配。当字符串长度小于 1M 时，扩容都是加倍现有的空间，如果超过 1M，扩容时一次只会多扩 1M 的空间。需要注意的是字符串最大长度为 512M。</p>
 </blockquote>
-<h2 id="回表"><a href="#回表" class="headerlink" title="回表"></a>回表</h2><p>在非主键索引树上查到主键数据，回到主键索引树搜索的过程，我们称为回表</p>
-<h2 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h2><p>如果某个非主键索引中的数据，已经满足了我们的查询需求，因此可以直接提供查询结果，不需要回表。</p>
+<p>字符串结构使用非常广泛，一个常见的用途就是缓存用户信息。我们将用户信息结构体使用 JSON 序列化成字符串，然后将序列化后的字符串塞进 Redis 来缓存。同样，取用户信息会经过一次反序列化的过程。</p>
+<h2 id="list（列表）"><a href="#list（列表）" class="headerlink" title="list（列表）"></a>list（列表）</h2><p>Redis 的列表相当于 Java 语言里面的 LinkedList，<strong>注意它是链表而不是数组</strong>。这意味着 list 的插入和删除操作非常快，时间复杂度为 O(1)，但是索引定位很慢，时间复杂度为 O(n)。</p>
 <blockquote>
-<p>由于覆盖索引可以减少树的搜索次数，显著提升查询性能，所以使用覆盖索引是一个常用的性能优化手段。</p>
+<p>当列表弹出了最后一个元素之后，该数据结构自动被删除，内存被回收。 </p>
 </blockquote>
-<h2 id="最左前缀原则"><a href="#最左前缀原则" class="headerlink" title="最左前缀原则"></a>最左前缀原则</h2><blockquote>
-<p>B+ 树这种索引结构，可以利用索引的“最左前缀”，来定位记录。</p>
+<p>Redis 的列表结构常用来做异步队列使用。将需要延后处理的任务结构体序列化成字符串塞进 Redis 的列表，另一个线程从这个列表中轮询数据进行处理</p>
+<h2 id="hash（字典）"><a href="#hash（字典）" class="headerlink" title="hash（字典）"></a>hash（字典）</h2><p>Redis 的字典相当于 Java 语言里面的 HashMap，它是无序字典。内部实现结构上同 Java 的 HashMap 也是一致的，同样的数组 + 链表二维结构。第一维 hash 的数组位置碰撞时，就会将碰撞的元素使用链表串接起来。不同的是，Redis 的字典的值只能是字符串，另外它们 rehash 的方式不一样，因为  Java 的 HashMap 在字典很大时，rehash 是个耗时的操作，需要一次性全部 rehash。Redis 为了高性能，不能堵塞服务，所以采用了渐进式 rehash 策略。</p>
+<blockquote>
+<p>渐进式 rehash 会在 rehash 的同时，保留新旧两个 hash 结构，查询时会同时查询两个 hash 结构，然后在后续的定时任务中以及 hash 的子指令中，循序渐进地将旧 hash 的内容一点点迁移到新的 hash 结构中。 </p>
+<blockquote>
+<p>当 hash 移除了最后一个元素之后，该数据结构自动被删除，内存被回收。<br>同字符串一样，hash 结构中的单个子 key 也可以进行计数，它对应的指令是 hincrby，和 incr 使用基本一样。 </p>
 </blockquote>
-<p>建立联合索引的原则</p>
-<ul>
-<li>第一原则是，如果通过调整顺序，可以少维护一个索引，那么这个顺序往往就是需要优先考虑采用的。</li>
-</ul>
-<h2 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h2><blockquote>
-<p>在 MySQL 5.6引入的索引下推优化（index condition pushdown)，可以在索引遍历过程中，对索引中包含的字段先做判断，直接过滤掉不满足条件的记录，减少回表次数。</p>
 </blockquote>
+<p>hash 结构也可以用来存储用户信息，不同于字符串一次性需要全部序列化整个对象，hash 可以对用户结构中的每个字段单独存储。这样当我们需要获取用户信息时可以进行部分获取。而以整个字符串的形式去保存用户信息的话就只能一次性全部读取，这样就会比较浪费网络流量。hash 也有缺点，hash 结构的存储消耗要高于单个字符串，到底该使用 hash 还是字符串，需要根据实际情况再三权衡。</p>
+<h2 id="set（集合）"><a href="#set（集合）" class="headerlink" title="set（集合）"></a>set（集合）</h2><p>Redis 的集合相当于 Java 语言里面的 HashSet，它内部的键值对是无序的唯一的。它的内部实现相当于一个特殊的字典，字典中所有的 value 都是一个值 NULL。</p>
+<blockquote>
+<p>当集合中最后一个元素移除之后，数据结构自动删除，内存被回收。</p>
+</blockquote>
+<p>set 结构可以用来存储活动中奖的用户 ID，因为有去重功能，可以保证同一个用户不会中奖两次。</p>
+<h2 id="zset-（有序列表）"><a href="#zset-（有序列表）" class="headerlink" title="zset （有序列表）"></a>zset （有序列表）</h2><p>zset 可能是 Redis 提供的最为特色的数据结构。它类似于 Java 的 SortedSet 和 HashMap 的结合体，一方面它是一个 set，保证了内部  value 的唯一性，另一方面它可以给每个 value 赋予一个 score，代表这个 value 的排序权重。它的内部实现用的是一种叫着「跳跃列表」的数据结构。</p>
+<blockquote>
+<p>zset 中最后一个 value 被移除后，数据结构自动删除，内存被回收。</p>
+</blockquote>
+<p>zset 可以用来存粉丝列表，value 值是粉丝的用户 ID，score 是关注时间。我们可以对粉丝列表按关注时间进行排序。 </p>
 
       
       <!-- reward -->
@@ -203,14 +220,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://chenfu1201.gitee.io/2020/03/01/%E7%B4%A2%E5%BC%95/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://chenfu1201.gitee.io/2020/04/19/Redis-%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B4%A2%E5%BC%95/" rel="tag">索引</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker-%E5%AE%89%E8%A3%85-Redis/" rel="tag">Docker 安装 Redis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis-%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">Redis 基础数据结构</a></li></ul>
 
 
     </footer>
@@ -221,19 +238,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/04/19/Redis-%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="article-nav-link">
+      <a href="/2020/04/19/Redis-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            Redis 基础数据结构
+            Redis 基础命令
           
         </div>
       </a>
     
     
-      <a href="/2019/08/03/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" class="article-nav-link">
+      <a href="/2020/03/01/%E7%B4%A2%E5%BC%95/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Java内存模型</div>
+        <div class="article-nav-title">索引</div>
       </a>
     
   </nav>

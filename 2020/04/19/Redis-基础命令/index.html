@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    索引 |  我不是码神
+    Redis 基础命令 |  我不是码神
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -38,7 +38,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-索引" class="article article-type-post" itemscope
+  <article id="post-Redis-基础命令" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -46,7 +46,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  索引
+  Redis 基础命令
 </h1>
  
 
@@ -55,12 +55,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/03/01/%E7%B4%A2%E5%BC%95/" class="article-date">
-  <time datetime="2020-03-01T12:46:25.000Z" itemprop="datePublished">2020-03-01</time>
+      <a href="/2020/04/19/Redis-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time datetime="2020-04-19T13:15:23.000Z" itemprop="datePublished">2020-04-19</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+    <a class="article-category-link" href="/categories/Redis/">Redis</a>
   </div>
 
       
@@ -70,7 +70,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">526字</span>
+            <span class="post-count">418字</span>
         </span>
     </span>
 
@@ -79,7 +79,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">2分钟</span>
         </span>
     </span>
 </div>
@@ -104,36 +104,18 @@
       
 
       
-      <h1 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引?"></a>什么是索引?</h1><blockquote>
-<p>索引的出现其实就是为了提高数据查询的效率，就像书的目录一样。在 MySQL 中，索引是在存储引擎层实现的</p>
-</blockquote>
-<h1 id="InnoDB-的索引模型"><a href="#InnoDB-的索引模型" class="headerlink" title="InnoDB 的索引模型"></a>InnoDB 的索引模型</h1><p>在 InnoDB 中，表都是根据主键顺序以索引的形式存放的，这种存储方式的表称为索引组织表。因为InnoDB 使用了 B+ 树索引模型，所以数据都是存储在 B+ 树中的。</p>
-<blockquote>
-<p>每一个索引在 InnoDB 里面对应一棵 B+ 树。</p>
-</blockquote>
-<h2 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h2><p>根据叶子节点的内容，索引类型分为主键索引和非主键索引。</p>
-<ul>
-<li>主键索引的叶子节点存的是整行数据。在 InnoDB 里，主键索引也被称为聚簇索引（clustered index）。</li>
-<li>非主键索引的叶子节点内容是主键的值。在 InnoDB 里，非主键索引也被称为二级索引（secondary index）。</li>
-</ul>
-<blockquote>
-<p>显然，主键长度越小，普通索引的叶子节点就越小，普通索引占用的空间也就越小</p>
-</blockquote>
-<h2 id="回表"><a href="#回表" class="headerlink" title="回表"></a>回表</h2><p>在非主键索引树上查到主键数据，回到主键索引树搜索的过程，我们称为回表</p>
-<h2 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h2><p>如果某个非主键索引中的数据，已经满足了我们的查询需求，因此可以直接提供查询结果，不需要回表。</p>
-<blockquote>
-<p>由于覆盖索引可以减少树的搜索次数，显著提升查询性能，所以使用覆盖索引是一个常用的性能优化手段。</p>
-</blockquote>
-<h2 id="最左前缀原则"><a href="#最左前缀原则" class="headerlink" title="最左前缀原则"></a>最左前缀原则</h2><blockquote>
-<p>B+ 树这种索引结构，可以利用索引的“最左前缀”，来定位记录。</p>
-</blockquote>
-<p>建立联合索引的原则</p>
-<ul>
-<li>第一原则是，如果通过调整顺序，可以少维护一个索引，那么这个顺序往往就是需要优先考虑采用的。</li>
-</ul>
-<h2 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h2><blockquote>
-<p>在 MySQL 5.6引入的索引下推优化（index condition pushdown)，可以在索引遍历过程中，对索引中包含的字段先做判断，直接过滤掉不满足条件的记录，减少回表次数。</p>
-</blockquote>
+      <p>Redis 基础数据结构 常用的命令。</p>
+<h1 id="string（字符串）"><a href="#string（字符串）" class="headerlink" title="string（字符串）"></a>string（字符串）</h1><h2 id="键值对"><a href="#键值对" class="headerlink" title="键值对"></a>键值对</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;set s1 v1</span><br><span class="line">OK</span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;get s1</span><br><span class="line">v1</span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;exists s1</span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;del s1</span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;get s1</span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
+
+<h2 id="批量键值对"><a href="#批量键值对" class="headerlink" title="批量键值对"></a>批量键值对</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;set s1 v1</span><br><span class="line">OK</span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;set s2 v2</span><br><span class="line">OK</span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;mget s1 s2 s3</span><br><span class="line"><span class="number">1</span>) v1</span><br><span class="line"><span class="number">2</span>) v2</span><br><span class="line"><span class="number">3</span>) (nil)</span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;mset s3 v3 s4 v4 s5 unknown</span><br><span class="line">OK</span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;mget s3 s4 s5</span><br><span class="line"><span class="number">1</span>) v3</span><br><span class="line"><span class="number">2</span>) v4</span><br><span class="line"><span class="number">3</span>) unknown</span><br></pre></td></tr></table></figure>
+
+<h2 id="过期和-set-命令扩展"><a href="#过期和-set-命令扩展" class="headerlink" title="过期和 set 命令扩展"></a>过期和 set 命令扩展</h2><p>可以对 key 设置过期时间，到点自动删除，这个功能常用来控制缓存的失效时间。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;set s6 v6</span><br><span class="line">OK</span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;get s6</span><br><span class="line">v6</span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;expire s6 <span class="number">5</span> 【<span class="number">5</span>秒 后过期】</span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;get s6</span><br><span class="line">(nil)</span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;setex s6 <span class="number">6</span> hello 【<span class="number">6</span>秒 后过期，等价于 set+expire】</span><br><span class="line">OK</span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;get s6</span><br><span class="line">hello</span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;get s6</span><br><span class="line">(nil)</span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;setnx s6 v6 【如果 s6 不存在就执行 set 创建 】</span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;get s6</span><br><span class="line">v6</span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;setnx s6 v7 【因为 s6 已经存在，所以set 创建不成功 】</span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;get s6 【s6 的值没有变化】</span><br><span class="line">v6</span><br></pre></td></tr></table></figure>
+
+<h2 id="计数"><a href="#计数" class="headerlink" title="计数"></a>计数</h2><p>如果 value 值是一个整数，还可以对它进行自增操作。自增是有范围的，它的范围是 signed long 的最大最小值，超过了这个值，Redis 会报错。 </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;set s1_age <span class="number">30</span></span><br><span class="line">OK</span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;incr s1_age</span><br><span class="line">(integer) <span class="number">31</span></span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;incrby s1_age <span class="number">5</span></span><br><span class="line">(integer) <span class="number">36</span></span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;incrby s1_age <span class="literal">-5</span></span><br><span class="line">(integer) <span class="number">31</span></span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;set s_max <span class="number">9223372036854775807</span> 【Long.Max】</span><br><span class="line">OK</span><br><span class="line"><span class="number">172.19</span>.<span class="number">190.187</span>:<span class="number">6379</span>&gt;incr s_max</span><br><span class="line">ERR increment or decrement would overflow</span><br></pre></td></tr></table></figure>
+
+
 
       
       <!-- reward -->
@@ -203,14 +185,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://chenfu1201.gitee.io/2020/03/01/%E7%B4%A2%E5%BC%95/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://chenfu1201.gitee.io/2020/04/19/Redis-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B4%A2%E5%BC%95/" rel="tag">索引</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/" rel="tag">Redis 基础命令</a></li></ul>
 
 
     </footer>
@@ -221,19 +203,10 @@
   
   <nav class="article-nav">
     
+    
       <a href="/2020/04/19/Redis-%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            Redis 基础数据结构
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2019/08/03/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Java内存模型</div>
+        <div class="article-nav-title">Redis 基础数据结构</div>
       </a>
     
   </nav>
