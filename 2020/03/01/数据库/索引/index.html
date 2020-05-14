@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    数据库事务 |  我不是码神
+    索引 |  我不是码神
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -38,7 +38,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-数据库事务" class="article article-type-post" itemscope
+  <article id="post-数据库/索引" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -46,7 +46,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  数据库事务
+  索引
 </h1>
  
 
@@ -55,8 +55,8 @@
 
     
     <div class="article-meta">
-      <a href="/2018/11/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/" class="article-date">
-  <time datetime="2018-11-03T14:01:48.000Z" itemprop="datePublished">2018-11-03</time>
+      <a href="/2020/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%B4%A2%E5%BC%95/" class="article-date">
+  <time datetime="2020-03-01T12:46:25.000Z" itemprop="datePublished">2020-03-01</time>
 </a>
       
   <div class="article-category">
@@ -70,7 +70,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.5k字</span>
+            <span class="post-count">526字</span>
         </span>
     </span>
 
@@ -79,7 +79,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">5分钟</span>
+            <span class="post-count">1分钟</span>
         </span>
     </span>
 </div>
@@ -104,55 +104,36 @@
       
 
       
-      <h1 id="什么是事务？"><a href="#什么是事务？" class="headerlink" title="什么是事务？"></a>什么是事务？</h1><blockquote>
-<p>事务是对数据库的一系列操作，有明确的开始和结束标志，且要被完全执行，要么全部成功，要么全部失败。</p>
+      <h1 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引?"></a>什么是索引?</h1><blockquote>
+<p>索引的出现其实就是为了提高数据查询的效率，就像书的目录一样。在 MySQL 中，索引是在存储引擎层实现的</p>
 </blockquote>
-<h1 id="为什么要使用事务？"><a href="#为什么要使用事务？" class="headerlink" title="为什么要使用事务？"></a>为什么要使用事务？</h1><blockquote>
-<p>为了保证我们业务的完整性，因为我们的业务就是一个序列操作，具备这种要么全部成功，要么全部失败的特性。</p>
-</blockquote>
-<h2 id="事务的特征"><a href="#事务的特征" class="headerlink" title="事务的特征"></a>事务的特征</h2><p>事务具备如下四大特征【ACID】</p>
-<ol>
-<li>原子性（Atomicity）<br>事务最终状态只有两种，全部执行成功和全部不执行，事务中任何一项操作失败，都会导致整个事务失败。一旦失败所有操作都会被取消【回滚】，就像事务从来没有执行过一样。</li>
-<li>一致性（Consistency）<br>事务执行前后，数据的完整性保持一致。</li>
-<li>隔离性（Isolation）<br>多个事务并发执行时，多个事务之间互不干扰。即一个事务内部的操作及使用的数据，对其他并发事务是隔离的。</li>
-<li>持久性（Durability）<br>事务结束后，对数据库所作的更改被永久保存下来了，即使发生系统故障或宕机，只要数据库能够恢复到被访问，那么一定能够被恢复到事务完成时的状态。</li>
-</ol>
-<h2 id="隔离级别"><a href="#隔离级别" class="headerlink" title="隔离级别"></a>隔离级别</h2><blockquote>
-<p>当数据库上有多个事务同时执行的时候，就可能出现脏读，不可重复读和幻读的问题，因此就有了“隔离级别”的概念。</p>
-</blockquote>
-<p>首先要知道，隔离得越严实，效率就越低。因此很多时候，要在这二者之间寻求一个平衡点。SQL标准的事务隔离级别包括如下几种。</p>
-<ol>
-<li>读未提交（read uncommitted）<br>一个事务还没提交，此时它所做的变更能被别的事务看到。此隔离级别会引发 <strong>脏读</strong> 的问题</li>
-<li>读提交（read committed）<br>一个事务提交之后，它做的变更才会被其他事务看到。此隔离级别会引发 <strong>不可重复读</strong> 的问题。</li>
-<li>可重复读（repeatable read）<br>一个事务执行过程中看到的数据，总是跟这个事务在启动时看到的数据是一致的。当然在可重复读隔离级别下，未提交变更对其他事务也是不可见的。此隔离级别下会引发 <strong>幻读</strong> 的问题。</li>
-<li>串行化（serializable）<br>对于同一行记录，“写”会加“写锁”，“读”会加“读锁”。当出现读写锁冲突的时候，后序访问的事务必须等前一个事务执行完成，才能继续执行。</li>
-</ol>
+<h1 id="InnoDB-的索引模型"><a href="#InnoDB-的索引模型" class="headerlink" title="InnoDB 的索引模型"></a>InnoDB 的索引模型</h1><p>在 InnoDB 中，表都是根据主键顺序以索引的形式存放的，这种存储方式的表称为索引组织表。因为InnoDB 使用了 B+ 树索引模型，所以数据都是存储在 B+ 树中的。</p>
 <blockquote>
-<p>Oracle数据库的默认隔离级别是 “读提交” 而 MySQL 的默认隔离级别是 “可重复读”，因此对于一些从Oracle迁移到MySQL的应用，为保证数据库隔离级别一致，一定要记得修改隔离级别为“读提交”。</p>
+<p>每一个索引在 InnoDB 里面对应一棵 B+ 树。</p>
 </blockquote>
-<h3 id="脏读，不可重复读和幻读都是什么？"><a href="#脏读，不可重复读和幻读都是什么？" class="headerlink" title="脏读，不可重复读和幻读都是什么？"></a>脏读，不可重复读和幻读都是什么？</h3><ol>
-<li>脏读<br>脏读就是拿了别的事务还没提交的数据在此基础上做了别的业务处理。</li>
-<li>不可重复读<br>在一个事务中，以相同的查询条件检索同一条数据，且当前事务没对此数据做任何修改，结果两次检索出的数据却不一致，说明有别的事务修改了此数据。</li>
-<li>幻读<br>在一个事务中，以某个条件检索出了一批数据，假设检索出了五条数据集，批量修改此数据集，预期是返回修改五条记录。结果发现修改了六条，说明有别的事务插入了满足此检索条件的数据集。</li>
-</ol>
-<blockquote>
-<p>这里对幻读的描述只是其中的一个场景，实际上不同事物 update，insert，delete 到同一批数据，都会出现幻读。原因在于“这些操作都是当前读的”。</p>
-</blockquote>
-<h3 id="事务隔离的实现"><a href="#事务隔离的实现" class="headerlink" title="事务隔离的实现"></a>事务隔离的实现</h3><blockquote>
-<p>在实现上，数据库里面会创建一个视图，访问的时候以视图的逻辑结果为准。在 MySQL 中，实际上每条记录在更新的时候都会同时记录一条回滚操作。记录上的最新值，通过回滚操作，都可以得到前一个状态的值。</p>
-</blockquote>
-<p><strong>同一条记录在系统中可以存在多个版本，就是数据库的多版本并发控制（MVCC）</strong></p>
-<ol>
-<li>“可重复读”隔离级别下，这个视图是在事务启动时创建的，整个事务存在期间都用这个视图。</li>
-<li>“读提交”隔离级别下，这个视图是在每个 SQL 语句开始执行的时候创建的。这里需要注意的是。</li>
-<li>“读未提交”隔离级别下直接返回记录上的最新值，没有视图概念。</li>
-<li>“串行化”隔离级别下直接用加锁的方式来避免并行访问。</li>
-</ol>
-<h3 id="福利来啦"><a href="#福利来啦" class="headerlink" title="福利来啦"></a>福利来啦</h3><p>事务这一块的东西非常非常重要，楼主在大四出来实习的时候，基本去哪面试都有被问过，有幸读过一篇阅读量上万的事务总结，非常的受用，可是随着学习的积累，楼主发现那篇文章描述的知识点有一些错误之处【说明了学习时找对学习资源的重要性】，这个错误楼主不止在那篇文章中看到过，在别的地方也见到过，所以在这里做个记录，希望能帮到有缘人。</p>
+<h2 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h2><p>根据叶子节点的内容，索引类型分为主键索引和非主键索引。</p>
 <ul>
-<li>情景再现<br>部分博客对幻读的描述是这样的：幻读发生在当两个完全相同的查询执行时，第二次查询所返回的结果集跟第一个查询不相同。</li>
+<li>主键索引的叶子节点存的是整行数据。在 InnoDB 里，主键索引也被称为聚簇索引（clustered index）。</li>
+<li>非主键索引的叶子节点内容是主键的值。在 InnoDB 里，非主键索引也被称为二级索引（secondary index）。</li>
 </ul>
-<p>经楼主查证，其实这种幻读【BUG】，已经被 MVCC 机制修复了。只是比较老的书都已经发版了也没法改，新发行的书中基本都有提到这一点。为了增加说服力，以图做镇，以示清白！<br><img src="https://img-blog.csdnimg.cn/2020011316340260.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NIRU5GVV9aS0s=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>显然，主键长度越小，普通索引的叶子节点就越小，普通索引占用的空间也就越小</p>
+</blockquote>
+<h2 id="回表"><a href="#回表" class="headerlink" title="回表"></a>回表</h2><p>在非主键索引树上查到主键数据，回到主键索引树搜索的过程，我们称为回表</p>
+<h2 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h2><p>如果某个非主键索引中的数据，已经满足了我们的查询需求，因此可以直接提供查询结果，不需要回表。</p>
+<blockquote>
+<p>由于覆盖索引可以减少树的搜索次数，显著提升查询性能，所以使用覆盖索引是一个常用的性能优化手段。</p>
+</blockquote>
+<h2 id="最左前缀原则"><a href="#最左前缀原则" class="headerlink" title="最左前缀原则"></a>最左前缀原则</h2><blockquote>
+<p>B+ 树这种索引结构，可以利用索引的“最左前缀”，来定位记录。</p>
+</blockquote>
+<p>建立联合索引的原则</p>
+<ul>
+<li>第一原则是，如果通过调整顺序，可以少维护一个索引，那么这个顺序往往就是需要优先考虑采用的。</li>
+</ul>
+<h2 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h2><blockquote>
+<p>在 MySQL 5.6引入的索引下推优化（index condition pushdown)，可以在索引遍历过程中，对索引中包含的字段先做判断，直接过滤掉不满足条件的记录，减少回表次数。</p>
+</blockquote>
 
       
       <!-- reward -->
@@ -222,14 +203,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://chenfu1201.github.io/2018/11/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://chenfu1201.github.io/2020/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%B4%A2%E5%BC%95/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%8B%E5%8A%A1/" rel="tag">事务</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B4%A2%E5%BC%95/" rel="tag">索引</a></li></ul>
 
 
     </footer>
@@ -240,19 +221,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2019/08/03/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" class="article-nav-link">
+      <a href="/2020/04/19/Redis/Redis-%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            Java内存模型
+            Redis 基础数据结构
           
         </div>
       </a>
     
     
-      <a href="/2000/03/13/hello-world/" class="article-nav-link">
+      <a href="/2019/08/03/Java%E5%9F%BA%E7%A1%80/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Hello World</div>
+        <div class="article-nav-title">Java内存模型</div>
       </a>
     
   </nav>
