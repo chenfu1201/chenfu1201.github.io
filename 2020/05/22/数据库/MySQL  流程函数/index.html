@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Jwt |  我不是码神
+    MySQL 流程函数 |  我不是码神
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -38,7 +38,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-J2EE/jwt" class="article article-type-post" itemscope
+  <article id="post-数据库/MySQL  流程函数" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -46,7 +46,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Jwt
+  MySQL 流程函数
 </h1>
  
 
@@ -55,12 +55,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/05/14/J2EE/jwt/" class="article-date">
-  <time datetime="2020-05-14T13:33:23.000Z" itemprop="datePublished">2020-05-14</time>
+      <a href="/2020/05/22/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%20%20%E6%B5%81%E7%A8%8B%E5%87%BD%E6%95%B0/" class="article-date">
+  <time datetime="2020-05-22T14:01:48.000Z" itemprop="datePublished">2020-05-22</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/J2EE/">J2EE</a>
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
   </div>
 
       
@@ -70,7 +70,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">254字</span>
+            <span class="post-count">939字</span>
         </span>
     </span>
 
@@ -79,7 +79,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">4分钟</span>
         </span>
     </span>
 </div>
@@ -104,17 +104,31 @@
       
 
       
-      <blockquote>
-<p>收藏一篇好文 <a href="https://www.jianshu.com/p/9f5b09b3739a" target="_blank" rel="noopener">SpringBoot 中使用 JWT</a></p>
+      <h1 id="MySQL-流程函数"><a href="#MySQL-流程函数" class="headerlink" title="MySQL 流程函数"></a>MySQL 流程函数</h1><blockquote>
+<p>流程函数是很常用的一类函数，它可以使我们在一个 SQL 中实现条件选择，MySQL 中与条件有关的流程函数，主要有如下几种</p>
 </blockquote>
-<h1 id="JWT-生成登录凭证案例【token】"><a href="#JWT-生成登录凭证案例【token】" class="headerlink" title="JWT 生成登录凭证案例【token】"></a>JWT 生成登录凭证案例【token】</h1><h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- jwt --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;io.jsonwebtoken&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jjwt&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;<span class="number">0.9</span>.<span class="number">1</span>&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="jwt配置"><a href="#jwt配置" class="headerlink" title="jwt配置"></a>jwt配置</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">chenfu:</span><br><span class="line">  audience:</span><br><span class="line">    <span class="comment"># 密钥, 经过Base64加密, 可自行替换</span></span><br><span class="line">    base64Secret: MDk4ZjZiY2Q0NjIxZDM3M2NhZGU0ZTgzMjYyN2I0ZjY=</span><br><span class="line">    <span class="comment"># JWT的签发主体，存入issuer</span></span><br><span class="line">    name: chenfu</span><br><span class="line">    <span class="comment"># 过期时间，时间戳</span></span><br><span class="line">    expiresSecond: <span class="number">60</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>IF(value, t, f)<br>如果 value 为真，返回t，否则返回f</li>
+<li>IFNULL(value1, value2)<br>如果 value1 不为 null 返回 value1，否则返回 value2</li>
+<li>CASE WHEN [value1] THEN [result1] … ELSE [default] END<br>如果 value1 为真，返回 result1，否则返回 default</li>
+<li>CASE [expr] WHEN [value1] THEN [result1] … ELSE [default] END<br>如果 expr 等于 value1，返回 result1，否则返回 default</li>
+</ul>
+<p>这四种流程函数，前两个比较熟悉，用的比较多，用法也比较简单，就不多做记录，主要说一下 case 函数。</p>
+<h2 id="case-函数"><a href="#case-函数" class="headerlink" title="case 函数"></a>case 函数</h2><p>case 具有上述两种格式。，近期楼主做的一个需求，恰好用此函数比较方便实现，遂在网上翻阅了一番，结果。。。天下文章一大抄，大多都是重复的，而且都解释的不清不楚的，所以楼主决定通过案例来梳理以下。</p>
+<p>首先需要明确一点，注意上边楼主记录的语法！这是楼主查阅书籍，摘抄下来的，你把它当官方文档看就完事了！</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CASE WHEN [value1] THEN [result1] ... ELSE [default] <span class="keyword">END</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="配置类"><a href="#配置类" class="headerlink" title="配置类"></a>配置类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootConfiguration</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"chenfu"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AudienceConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Getter</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Audience audience = <span class="keyword">new</span> Audience();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Data</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Audience</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> String base64Secret;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> expiresSecond;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>value1 是一个表达式！当此表达式满足条件，才会返回 value1，所以这种 case 函数 比较强大，我们可以对这个字段上的值进行一些处理和判断，【比如取值是否为 null 也作为一个逻辑分支】</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CASE [expr] WHEN [value1] THEN [result1] ... ELSE [default] <span class="keyword">END</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="token-的签发和获取过期时间"><a href="#token-的签发和获取过期时间" class="headerlink" title="token 的签发和获取过期时间"></a>token 的签发和获取过期时间</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JwtUtils</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    AudienceConfig audienceConfig;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    签发 token</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getToken</span><span class="params">(String sub)</span> </span>&#123;</span><br><span class="line">        AudienceConfig.Audience configAudience = audienceConfig.getAudience();</span><br><span class="line">        Key key = <span class="keyword">new</span> SecretKeySpec(DatatypeConverter.parseBase64Binary(configAudience.getBase64Secret()), SignatureAlgorithm.HS512.getJcaName());</span><br><span class="line">        String token = Jwts.builder()</span><br><span class="line">                .setSubject(sub)</span><br><span class="line">                .signWith(SignatureAlgorithm.HS512, key)</span><br><span class="line">                .setExpiration(<span class="keyword">new</span> Date(System.currentTimeMillis() + configAudience.getExpiresSecond() * <span class="number">1000</span>))</span><br><span class="line">                .compact();</span><br><span class="line">        <span class="keyword">return</span> token;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    获取过期时间，注意如果已经过期会抛过期异常 </span></span><br><span class="line"><span class="comment">//    io.jsonwebtoken.ExpiredJwtException.class</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSubject</span><span class="params">(String token)</span> </span>&#123;</span><br><span class="line">        AudienceConfig.Audience configAudience = audienceConfig.getAudience();</span><br><span class="line">        Key key = <span class="keyword">new</span> SecretKeySpec(DatatypeConverter.parseBase64Binary(configAudience.getBase64Secret()), SignatureAlgorithm.HS512.getJcaName());</span><br><span class="line">        <span class="keyword">return</span> Jwts.parser()</span><br><span class="line">                .setSigningKey(key)</span><br><span class="line">                .parseClaimsJws(token)</span><br><span class="line">                .getBody()</span><br><span class="line">                .getSubject();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+<p>看这个 expr 是啥？ 注意了它是我们的流程判断条件！当它和 WHEN 后边的 value1 一致的时候，才会返回对应 result1!</p>
+<blockquote>
+<p>从楼主的使用经验来看，第一种可以满足第二种的所有需求，而第二种对于 为null 的值是直接匹配不到的！但是我们可以通过 ELSE 来对前边流程没匹配上的值赋默认值，即间接的对为 null 值进行处理。</p>
+</blockquote>
+<ul>
+<li>案例代码</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mysql&gt; select *from user limit 5;</span><br><span class="line">+<span class="comment">---------+---------------------+-------------+---------------------+------------+------+--------+---------------+</span></span><br><span class="line">| user_id | create_time         | email       | update_time         | user_name  | age  | gender | image_content |</span><br><span class="line">+<span class="comment">---------+---------------------+-------------+---------------------+------------+------+--------+---------------+</span></span><br><span class="line">|       6 | 2019-08-16 20:16:10 | 2323@12.com | 2019-08-16 20:41:47 | 韩小姐     | NULL |      0 | NULL          |</span><br><span class="line">|       7 | 2019-08-16 21:02:47 | Y           | 2020-05-22 22:15:15 | 赵司令0    |   17 |      1 | NULL          |</span><br><span class="line">|       8 | 2019-08-16 21:02:47 | N           | 2020-05-22 22:15:17 | 赵司令1    |   10 |      0 | NULL          |</span><br><span class="line">|       9 | 2019-08-16 21:02:47 | NULL        | NULL                | 马东升2    |   14 |      1 | NULL          |</span><br><span class="line">|      10 | 2019-08-16 21:02:47 | NULL        | NULL                | 材济济3    |   13 |      0 | NULL          |</span><br><span class="line">+<span class="comment">---------+---------------------+-------------+---------------------+------------+------+--------+---------------+</span></span><br><span class="line">5 rows in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">SELECT</span></span><br><span class="line">    -&gt; a.user_id userId,</span><br><span class="line">    -&gt; a.create_time createTime,</span><br><span class="line">    -&gt; a.email,</span><br><span class="line">    -&gt; <span class="keyword">CASE</span></span><br><span class="line">    -&gt; <span class="keyword">WHEN</span> a.email <span class="keyword">IS</span> <span class="literal">NULL</span> <span class="keyword">THEN</span></span><br><span class="line">    -&gt; <span class="string">'无数据'</span></span><br><span class="line">    -&gt; <span class="keyword">WHEN</span> a.email = <span class="string">'Y'</span> <span class="keyword">THEN</span></span><br><span class="line">    -&gt; <span class="string">'chenfu@qq.com'</span></span><br><span class="line">    -&gt; <span class="keyword">WHEN</span> a.email = <span class="string">'N'</span> <span class="keyword">THEN</span></span><br><span class="line">    -&gt; <span class="string">'cc@qq.com'</span></span><br><span class="line">    -&gt; <span class="keyword">ELSE</span></span><br><span class="line">    -&gt; a.email</span><br><span class="line">    -&gt; <span class="keyword">END</span> email,</span><br><span class="line">    -&gt;  a.user_name userName</span><br><span class="line">    -&gt; <span class="keyword">FROM</span></span><br><span class="line">    -&gt; <span class="keyword">USER</span> a</span><br><span class="line">    -&gt; <span class="keyword">LIMIT</span> <span class="number">5</span>;</span><br><span class="line">+<span class="comment">--------+---------------------+-------------+---------------+------------+</span></span><br><span class="line">| userId | createTime          | email       | email         | userName   |</span><br><span class="line">+<span class="comment">--------+---------------------+-------------+---------------+------------+</span></span><br><span class="line">|      6 | 2019-08-16 20:16:10 | 2323@12.com | 2323@12.com   | 韩小姐     |</span><br><span class="line">|      7 | 2019-08-16 21:02:47 | Y           | chenfu@qq.com | 赵司令0    |</span><br><span class="line">|      8 | 2019-08-16 21:02:47 | N           | cc@qq.com     | 赵司令1    |</span><br><span class="line">|      9 | 2019-08-16 21:02:47 | NULL        | 无数据        | 马东升2    |</span><br><span class="line">|     10 | 2019-08-16 21:02:47 | NULL        | 无数据        | 材济济3    |</span><br><span class="line">+<span class="comment">--------+---------------------+-------------+---------------+------------+</span></span><br><span class="line">5 rows in <span class="keyword">set</span> (<span class="number">0.10</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">SELECT</span></span><br><span class="line">    -&gt; a.user_id userId,</span><br><span class="line">    -&gt; a.create_time createTime,</span><br><span class="line">    -&gt; a.email,</span><br><span class="line">    -&gt; <span class="keyword">CASE</span></span><br><span class="line">    -&gt; a.email</span><br><span class="line">    -&gt; <span class="keyword">WHEN</span> <span class="literal">NULL</span> <span class="keyword">THEN</span></span><br><span class="line">    -&gt; <span class="string">'无数据-NULL'</span></span><br><span class="line">    -&gt; <span class="keyword">WHEN</span> <span class="string">'Y'</span> <span class="keyword">THEN</span></span><br><span class="line">    -&gt; <span class="string">'chenfu@qq.com'</span></span><br><span class="line">    -&gt; <span class="keyword">WHEN</span> <span class="string">'N'</span> <span class="keyword">THEN</span></span><br><span class="line">    -&gt; <span class="string">'cc@qq.com'</span></span><br><span class="line">    -&gt; <span class="keyword">ELSE</span></span><br><span class="line">    -&gt; <span class="string">'无数据'</span></span><br><span class="line">    -&gt; <span class="keyword">END</span> email,</span><br><span class="line">    -&gt;  a.user_name userName</span><br><span class="line">    -&gt; <span class="keyword">FROM</span></span><br><span class="line">    -&gt; <span class="keyword">USER</span> a</span><br><span class="line">    -&gt; <span class="keyword">LIMIT</span> <span class="number">5</span>;</span><br><span class="line">+<span class="comment">--------+---------------------+-------------+---------------+------------+</span></span><br><span class="line">| userId | createTime          | email       | email         | userName   |</span><br><span class="line">+<span class="comment">--------+---------------------+-------------+---------------+------------+</span></span><br><span class="line">|      6 | 2019-08-16 20:16:10 | 2323@12.com | 无数据        | 韩小姐     |</span><br><span class="line">|      7 | 2019-08-16 21:02:47 | Y           | chenfu@qq.com | 赵司令0    |</span><br><span class="line">|      8 | 2019-08-16 21:02:47 | N           | cc@qq.com     | 赵司令1    |</span><br><span class="line">|      9 | 2019-08-16 21:02:47 | NULL        | 无数据        | 马东升2    |</span><br><span class="line">|     10 | 2019-08-16 21:02:47 | NULL        | 无数据        | 材济济3    |</span><br><span class="line">+<span class="comment">--------+---------------------+-------------+---------------+------------+</span></span><br><span class="line">5 rows in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
       
       <!-- reward -->
       
@@ -183,14 +197,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://chenfu1201.github.io/2020/05/14/J2EE/jwt/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://chenfu1201.github.io/2020/05/22/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%20%20%E6%B5%81%E7%A8%8B%E5%87%BD%E6%95%B0/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jwt/" rel="tag">Jwt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot2-x-%E4%B8%AD%E4%BD%BF%E7%94%A8-Jwt/" rel="tag">SpringBoot2.x 中使用 Jwt</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL-%E6%B5%81%E7%A8%8B%E5%87%BD%E6%95%B0/" rel="tag">MySQL 流程函数</a></li></ul>
 
 
     </footer>
@@ -201,19 +215,10 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/05/22/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%20%20%E6%B5%81%E7%A8%8B%E5%87%BD%E6%95%B0/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            MySQL 流程函数
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/05/08/Java%E5%9F%BA%E7%A1%80/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="article-nav-link">
+      <a href="/2020/05/14/J2EE/jwt/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">基本数据类型</div>
+        <div class="article-nav-title">Jwt</div>
       </a>
     
   </nav>
