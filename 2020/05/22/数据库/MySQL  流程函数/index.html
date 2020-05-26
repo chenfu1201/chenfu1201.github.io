@@ -70,7 +70,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">939字</span>
+            <span class="post-count">857字</span>
         </span>
     </span>
 
@@ -114,8 +114,7 @@
 <li>CASE [expr] WHEN [value1] THEN [result1] … ELSE [default] END<br>如果 expr 等于 value1，返回 result1，否则返回 default</li>
 </ul>
 <p>这四种流程函数，前两个比较熟悉，用的比较多，用法也比较简单，就不多做记录，主要说一下 case 函数。</p>
-<h2 id="case-函数"><a href="#case-函数" class="headerlink" title="case 函数"></a>case 函数</h2><p>case 具有上述两种格式。，近期楼主做的一个需求，恰好用此函数比较方便实现，遂在网上翻阅了一番，结果。。。天下文章一大抄，大多都是重复的，而且都解释的不清不楚的，所以楼主决定通过案例来梳理以下。</p>
-<p>首先需要明确一点，注意上边楼主记录的语法！这是楼主查阅书籍，摘抄下来的，你把它当官方文档看就完事了！</p>
+<h2 id="case-函数"><a href="#case-函数" class="headerlink" title="case 函数"></a>case 函数</h2><p>首先需要明确一点，注意上边楼主记录的语法！这是楼主查阅书籍，摘抄下来的，你把它当官方文档看就完事了！</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CASE WHEN [value1] THEN [result1] ... ELSE [default] <span class="keyword">END</span></span><br></pre></td></tr></table></figure>
 
 <p>value1 是一个表达式！当此表达式满足条件，才会返回 value1，所以这种 case 函数 比较强大，我们可以对这个字段上的值进行一些处理和判断，【比如取值是否为 null 也作为一个逻辑分支】</p>
